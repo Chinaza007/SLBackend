@@ -4,6 +4,7 @@ import { PrismaService } from '../../common/prisma/prisma.service';
 import { StellarService } from '../../common/stellar/stellar.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { ExamsService } from '../exams/exams.service';
+import { CertificatePdfService } from './certificate-pdf.service';
 import { ForbiddenException, NotFoundException } from '@nestjs/common';
 
 const mockPrisma = {
@@ -34,6 +35,10 @@ const mockExams = {
   hasPassedExam: jest.fn().mockResolvedValue(true),
 };
 
+const mockPdfService = {
+  renderForCategory: jest.fn().mockResolvedValue(Buffer.from('pdf')),
+};
+
 const MOCK_ENROLLMENT = {
   id:             'enroll-1',
   studentId:      'student-1',
@@ -56,6 +61,7 @@ describe('CertificatesService', () => {
         { provide: StellarService,       useValue: mockStellar },
         { provide: NotificationsService, useValue: mockNotifications },
         { provide: ExamsService,         useValue: mockExams },
+        { provide: CertificatePdfService, useValue: mockPdfService },
       ],
     }).compile();
 
@@ -77,6 +83,9 @@ describe('CertificatesService', () => {
         issuedAt:        new Date(),
         student:         MOCK_ENROLLMENT.student,
         course:          MOCK_ENROLLMENT.course,
+      });
+      mockPrisma.certificate.update.mockResolvedValue({
+        courseTitle: 'Professional Tailoring',
       });
 
       const result = await service.issue('admin-1', 'student-1', 'COURSE-TAILORING-001');

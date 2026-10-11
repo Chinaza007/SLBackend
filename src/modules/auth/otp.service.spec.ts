@@ -1,5 +1,6 @@
 import { Test, TestingModule } from '@nestjs/testing';
 import { UnauthorizedException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
 import { OtpService, TooManyRequestsException } from './otp.service';
 import { PrismaService } from '../../common/prisma/prisma.service';
 
@@ -24,9 +25,6 @@ describe('OtpService', () => {
     get: jest.fn((key: string, defaultValue?: any) => {
       const config: Record<string, any> = {
         NODE_ENV: 'test',
-        AFRICASTALKING_USERNAME: 'test_username',
-        AFRICASTALKING_API_KEY: 'test_api_key',
-        AFRICASTALKING_SENDER_ID: 'TestSender',
       };
       return config[key] ?? defaultValue;
     }),

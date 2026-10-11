@@ -48,7 +48,7 @@ describe('ModerationService', () => {
         category: ReportCategory.SPAM,
         status: ReportStatus.PENDING,
       });
-      mockPrisma.abuseReport.count.mockResolvedValue(1);
+      mockPrisma.abuseReport.findMany.mockResolvedValue([{ reporterId: 'user-1' }]);
 
       const result = await service.createFlag('user-1', {
         targetType: ReportTargetType.COURSE,
@@ -70,7 +70,11 @@ describe('ModerationService', () => {
         category: ReportCategory.HARASSMENT,
         status: ReportStatus.PENDING,
       });
-      mockPrisma.abuseReport.count.mockResolvedValue(3);
+      mockPrisma.abuseReport.findMany.mockResolvedValue([
+        { reporterId: 'user-1' },
+        { reporterId: 'user-2' },
+        { reporterId: 'user-3' },
+      ]);
       mockPrisma.course.findUnique.mockResolvedValue({
         id: 'course-1',
         status: CourseStatus.ACTIVE,
@@ -124,7 +128,11 @@ describe('ModerationService', () => {
         category: ReportCategory.HARASSMENT,
         status: ReportStatus.PENDING,
       });
-      mockPrisma.abuseReport.count.mockResolvedValue(3);
+      mockPrisma.abuseReport.findMany.mockResolvedValue([
+        { reporterId: 'user-1' },
+        { reporterId: 'user-2' },
+        { reporterId: 'user-3' },
+      ]);
 
       await service.createFlag('user-3', {
         targetType: ReportTargetType.COURSE,
@@ -132,13 +140,14 @@ describe('ModerationService', () => {
         category: ReportCategory.HARASSMENT,
       });
 
-      expect(mockPrisma.abuseReport.count).toHaveBeenCalledWith({
+      expect(mockPrisma.abuseReport.findMany).toHaveBeenCalledWith({
         where: {
           targetType: ReportTargetType.COURSE,
           targetId: 'course-1',
           status: { in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW] },
         },
         distinct: ['reporterId'],
+        select: { reporterId: true },
       });
     });
 

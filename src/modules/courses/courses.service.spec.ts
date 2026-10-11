@@ -4,6 +4,7 @@ import { PrismaService } from '../../common/prisma/prisma.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { FeeCalculatorService } from '../billing/fee-calculator.service';
 import { SearchService } from '../search/search.service';
+import { CacheService } from '../../common/cache/cache.service';
 import { ConflictException, ForbiddenException, NotFoundException } from '@nestjs/common';
 import { CourseStatus } from '@prisma/client';
 
@@ -37,6 +38,10 @@ const mockSearchService = {
   }),
 };
 
+const mockCacheService = {
+  invalidateNamespace: jest.fn().mockResolvedValue(undefined),
+};
+
 const MOCK_COURSE = {
   id:                'COURSE-TAILORING-001',
   instructorAddress: 'GABC',
@@ -62,6 +67,7 @@ describe('CoursesService', () => {
         { provide: PrismaService,       useValue: mockPrisma },
         { provide: NotificationsService, useValue: mockNotifications },
         { provide: SearchService, useValue: mockSearchService },
+        { provide: CacheService, useValue: mockCacheService },
         FeeCalculatorService,
       ],
     }).compile();

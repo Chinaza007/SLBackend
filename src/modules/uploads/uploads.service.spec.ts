@@ -5,6 +5,8 @@ import * as fs from 'fs';
 import { CdnService } from './cdn.service';
 import { UploadsService } from './uploads.service';
 import { VirusScanService } from './virus-scan.service';
+import { VideoTranscodeService } from './video-transcode.service';
+import { VideoThumbnailService } from './video-thumbnail.service';
 
 jest.mock('clamscan', () => {
   return jest.fn().mockImplementation(() => {
@@ -38,6 +40,11 @@ describe('UploadsService (CDN integration)', () => {
             getScanStatus: jest.fn(),
           },
         },
+        {
+          provide: VideoTranscodeService,
+          useValue: { enqueueTranscode: jest.fn() },
+        },
+        { provide: VideoThumbnailService, useValue: {} },
         {
           provide: ConfigService,
           useValue: {

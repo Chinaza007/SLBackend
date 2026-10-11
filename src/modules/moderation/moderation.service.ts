@@ -50,14 +50,16 @@ export class ModerationService {
     });
 
     // Check pending flags threshold for automatic unpublish/hide
-    const pendingCount = await this.prisma.abuseReport.count({
+    const pendingReports = await this.prisma.abuseReport.findMany({
       where: {
         targetType: dto.targetType,
         targetId: dto.targetId,
         status: { in: [ReportStatus.PENDING, ReportStatus.UNDER_REVIEW] },
       },
       distinct: ['reporterId'],
+      select: { reporterId: true },
     });
+    const pendingCount = pendingReports.length;
 
     let autoActionTaken = false;
     if (pendingCount >= DEFAULT_UNPUBLISH_THRESHOLD) {

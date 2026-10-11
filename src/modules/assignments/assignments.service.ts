@@ -25,7 +25,7 @@ export class AssignmentsService {
       include: {
         module: {
           include: {
-            course: true,
+            course: { include: { instructor: { select: { id: true } } } },
           },
         },
       },
@@ -150,7 +150,7 @@ export class AssignmentsService {
               include: {
                 module: {
                   include: {
-                    course: true,
+                    course: { include: { instructor: { select: { id: true } } } },
                   },
                 },
               },

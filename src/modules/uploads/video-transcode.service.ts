@@ -5,7 +5,9 @@ import * as ffmpeg from 'fluent-ffmpeg';
 import * as path from 'path';
 import * as fs from 'fs';
 import { ConfigService } from '@nestjs/config';
-import { CdnService, UploadResult } from './cdn.service';
+import { CdnService, MediaDeliveryUrls } from './cdn.service';
+
+type TranscodedUploadResult = MediaDeliveryUrls & { url: string };
 
 export interface TranscodeJobData {
   videoId: string;
@@ -76,7 +78,7 @@ export class VideoTranscodeProcessor extends WorkerHost {
     this.logger.log(`Processing transcode job ${job.id} for video ${job.data.videoId}`);
     const { sourcePath, filename, subfolder } = job.data;
     
-    const outputUrls: Record<string, UploadResult> = {};
+    const outputUrls: Record<string, TranscodedUploadResult> = {};
     const baseFilename = path.parse(filename).name;
 
     for (const [index, preset] of RESOLUTION_PRESETS.entries()) {
