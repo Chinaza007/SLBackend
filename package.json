@@ -1,8 +1,8 @@
 {
-  "name": "hamplard-backend",
+  "name": "sorobanlard-backend",
   "version": "0.1.0",
-  "description": "Hamplard — NestJS backend for the online vocational skills learning platform",
-  "author": "Hamplard Team",
+  "description": "SorobanLard — NestJS backend for the online vocational skills learning platform",
+  "author": "SorobanLard Team",
   "private": true,
   "license": "MIT",
   "scripts": {

@@ -27,7 +27,7 @@ export class TwoFactorService {
       throw new BadRequestException('Two-factor authentication is already enabled for this account');
     }
 
-    const issuer = this.config.get<string>('PLATFORM_NAME', 'Hamplard');
+    const issuer = this.config.get<string>('PLATFORM_NAME', 'SorobanLard');
     const label = user.email ?? user.stellarAddress ?? user.id;
 
     const secret = speakeasy.generateSecret({

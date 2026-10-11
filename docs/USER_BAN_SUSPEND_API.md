@@ -2,7 +2,7 @@
 
 ## Overview
 
-This feature allows administrators to ban or suspend user accounts in the Hamplard platform. Banned users are permanently blocked from accessing the platform, while suspended users are temporarily restricted until a specified date.
+This feature allows administrators to ban or suspend user accounts in the SorobanLard platform. Banned users are permanently blocked from accessing the platform, while suspended users are temporarily restricted until a specified date.
 
 ## Database Changes
 
@@ -265,7 +265,7 @@ Example audit log entry:
 ### Example 1: Ban a user for policy violation
 
 ```bash
-curl -X POST https://api.hamplard.com/users/USER_ID/ban \
+curl -X POST https://api.sorobanlard.com/users/USER_ID/ban \
   -H "Authorization: Bearer ADMIN_JWT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -277,7 +277,7 @@ curl -X POST https://api.hamplard.com/users/USER_ID/ban \
 ### Example 2: Suspend user pending investigation
 
 ```bash
-curl -X POST https://api.hamplard.com/users/USER_ID/suspend \
+curl -X POST https://api.sorobanlard.com/users/USER_ID/suspend \
   -H "Authorization: Bearer ADMIN_JWT_TOKEN" \
   -H "Content-Type: application/json" \
   -d '{
@@ -289,7 +289,7 @@ curl -X POST https://api.hamplard.com/users/USER_ID/suspend \
 ### Example 3: Check if a user can access the platform
 
 ```bash
-curl -X GET https://api.hamplard.com/users/USER_ID/account-status \
+curl -X GET https://api.sorobanlard.com/users/USER_ID/account-status \
   -H "Authorization: Bearer ADMIN_JWT_TOKEN"
 ```
 

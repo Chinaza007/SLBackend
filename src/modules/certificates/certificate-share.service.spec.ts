@@ -18,9 +18,9 @@ const mockPrisma = {
 };
 
 const configValues: Record<string, string> = {
-  PUBLIC_API_URL: 'https://api.hamplard.test/api/v1',
-  FRONTEND_URL: 'https://hamplard.test',
-  PLATFORM_NAME: 'Hamplard',
+  PUBLIC_API_URL: 'https://api.sorobanlard.test/api/v1',
+  FRONTEND_URL: 'https://sorobanlard.test',
+  PLATFORM_NAME: 'SorobanLard',
 };
 
 const mockConfig = {
@@ -37,7 +37,7 @@ const certificate = {
   isRevoked: false,
   issuedAt: new Date('2026-08-15T10:00:00.000Z'),
   student: { name: 'Jane Doe' },
-  course: { thumbnailUrl: 'https://cdn.hamplard.test/tailoring.png' },
+  course: { thumbnailUrl: 'https://cdn.sorobanlard.test/tailoring.png' },
 };
 
 describe('CertificateShareService', () => {
@@ -72,7 +72,7 @@ describe('CertificateShareService', () => {
         expect.objectContaining({ where: { certificateId: certificate.id } }),
       );
       expect(result.shareUrl).toBe(
-        'https://api.hamplard.test/api/v1/certificates/share/public-token',
+        'https://api.sorobanlard.test/api/v1/certificates/share/public-token',
       );
       expect(result.linkedinUrl).toContain('startTask=CERTIFICATION_NAME');
       expect(result.linkedinUrl).toContain('certId=CERT-ABC123');

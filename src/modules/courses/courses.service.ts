@@ -121,7 +121,7 @@ export class CoursesService {
         instructor.id,
         NotificationType.COURSE_APPROVED,
         'Your course has been approved!',
-        `"${course.title}" is now live on Hamplard. Students can start enrolling.`,
+        `"${course.title}" is now live on SorobanLard. Students can start enrolling.`,
         { courseId },
       );
     }

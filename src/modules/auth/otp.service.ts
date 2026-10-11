@@ -121,8 +121,8 @@ export class OtpService {
     }
 
     try {
-      const senderId = this.config.get<string>('AFRICASTALKING_SENDER_ID', 'Hamplard');
-      const message = `Your Hamplard verification code is: ${otp}. Valid for ${OTP_EXPIRY_MINUTES} minutes.`;
+      const senderId = this.config.get<string>('AFRICASTALKING_SENDER_ID', 'SorobanLard');
+      const message = `Your SorobanLard verification code is: ${otp}. Valid for ${OTP_EXPIRY_MINUTES} minutes.`;
 
       await this.smsClient.send({
         to: [phoneNumber],

@@ -84,8 +84,8 @@ export class DbBackupService {
       const prefix = this.getObjectPrefix();
       const connection = this.parseDatabaseUrl(databaseUrl);
 
-      temporaryDirectory = await mkdtemp(join(tmpdir(), 'hamplard-db-backup-'));
-      const fileName = `hamplard-${this.toFileTimestamp(startedAt)}.dump`;
+      temporaryDirectory = await mkdtemp(join(tmpdir(), 'sorobanlard-db-backup-'));
+      const fileName = `sorobanlard-${this.toFileTimestamp(startedAt)}.dump`;
       const dumpPath = join(temporaryDirectory, fileName);
       objectKey = `${prefix}/${fileName}`;
 

@@ -111,9 +111,9 @@ export class CertificateShareService {
   ) {
     const shareUrl = `${this.apiBaseUrl()}/certificates/share/${encodeURIComponent(token)}`;
     const verificationUrl = `${this.frontendUrl()}/certificates/verify/${encodeURIComponent(certificate.id)}`;
-    const holderName = certificate.student.name || 'A Hamplard learner';
+    const holderName = certificate.student.name || 'A SorobanLard learner';
     const title = `${holderName} earned a certificate in ${certificate.courseTitle}`;
-    const description = `Verify ${holderName}'s Hamplard certificate for ${certificate.courseTitle}.`;
+    const description = `Verify ${holderName}'s SorobanLard certificate for ${certificate.courseTitle}.`;
     const image =
       certificate.course.thumbnailUrl ||
       this.config.get<string>('CERTIFICATE_SHARE_IMAGE_URL') ||
@@ -124,7 +124,7 @@ export class CertificateShareService {
     linkedin.searchParams.set('name', certificate.courseTitle);
     linkedin.searchParams.set(
       'organizationName',
-      this.config.get<string>('PLATFORM_NAME', 'Hamplard'),
+      this.config.get<string>('PLATFORM_NAME', 'SorobanLard'),
     );
     linkedin.searchParams.set(
       'issueYear',
@@ -141,7 +141,7 @@ export class CertificateShareService {
       certificationName: certificate.courseTitle,
       issuingOrganization: this.config.get<string>(
         'PLATFORM_NAME',
-        'Hamplard',
+        'SorobanLard',
       ),
       issueYear: certificate.issuedAt.getUTCFullYear(),
       issueMonth: certificate.issuedAt.getUTCMonth() + 1,

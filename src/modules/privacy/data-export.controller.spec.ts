@@ -67,7 +67,7 @@ describe('DataExportController', () => {
     it('streams the export as an attachment with a JSON content type', async () => {
       service.downloadExport.mockResolvedValue({
         jobId: 'job-1',
-        filename: 'hamplard-data-export-job-1.json',
+        filename: 'sorobanlard-data-export-job-1.json',
         contentType: 'application/json',
         payload: { data: { profile: { id: 'user-1' } } },
         checksum: 'deadbeef',
@@ -78,7 +78,7 @@ describe('DataExportController', () => {
 
       expect(file).toBeInstanceOf(StreamableFile);
       expect(file.options.disposition).toContain('attachment');
-      expect(file.options.disposition).toContain('hamplard-data-export-job-1.json');
+      expect(file.options.disposition).toContain('sorobanlard-data-export-job-1.json');
       const json = JSON.parse(Buffer.from(file.getStream().read() as Buffer).toString('utf8'));
       expect(json.data.profile.id).toBe('user-1');
     });

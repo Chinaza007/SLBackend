@@ -5,10 +5,10 @@ import { PrismaService } from '../../common/prisma/prisma.service';
 const NOW = new Date('2026-08-27T00:00:00.000Z');
 
 const COMPLETE_BRANDING = {
-  organizationName: 'Hamplard Academy',
+  organizationName: 'SorobanLard Academy',
   primaryColor: '#1A365D',
   secondaryColor: '#C9A227',
-  footerText: 'Verify at hamplard.com',
+  footerText: 'Verify at sorobanlard.com',
 };
 
 const COMPLETE_LAYOUT = {
@@ -85,7 +85,7 @@ describe('CertificateTemplatesService', () => {
       });
 
       expect(result.isActive).toBe(false);
-      expect(result.branding.organizationName).toBe('Hamplard Academy');
+      expect(result.branding.organizationName).toBe('SorobanLard Academy');
       expect(result.layout.orientation).toBe('LANDSCAPE');
       expect(result.signatures).toHaveLength(2);
       expect(mockPrisma.certificateTemplate.create).toHaveBeenCalledWith(
@@ -128,7 +128,7 @@ describe('CertificateTemplatesService', () => {
         expect.objectContaining({
           data: expect.objectContaining({
             branding: expect.objectContaining({
-              organizationName: 'Hamplard Academy',
+              organizationName: 'SorobanLard Academy',
               primaryColor: '#0F172A',
             }),
           }),

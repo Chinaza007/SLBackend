@@ -1,20 +1,20 @@
-# Hamplard — Backend Repo
+# SorobanLard — Backend Repo
 
 > **NestJS API for Africa's practical skills online learning platform**
 
-This is **Repo 2 of 3** in the Hamplard project:
+This is **Repo 2 of 3** in the SorobanLard project:
 
 | Repo | Description |
 |------|-------------|
-| `hamplard-contract` | Soroban smart contract (Rust) — payments + certificates |
-| `hamplard-backend` ← you are here | NestJS REST API — content, progress, users |
-| `hamplard-frontend` | Next.js — student and instructor portal |
+| `sorobanlard-contract` | Soroban smart contract (Rust) — payments + certificates |
+| `sorobanlard-backend` ← you are here | NestJS REST API — content, progress, users |
+| `sorobanlard-frontend` | Next.js — student and instructor portal |
 
 ---
 
 ## What This Backend Does
 
-The backend is the content and user management layer of Hamplard. It handles everything that does not need to be on-chain:
+The backend is the content and user management layer of SorobanLard. It handles everything that does not need to be on-chain:
 
 - **User management** — student and instructor profiles, role management
 - **Course content** — course creation, module and lesson organisation, video management
@@ -161,14 +161,14 @@ All endpoints prefixed with `/api/v1`. Protected routes require `Authorization: 
 | `POST` | `/uploads/resource` | ✓ | Upload downloadable resource (max 50MB) |
 | `POST` | `/uploads/assignment` | ✓ | Upload assignment submission (max 100MB) |
 
-### Events, Notifications, Health — standard across all Hamplard repos
+### Events, Notifications, Health — standard across all SorobanLard repos
 
 ---
 
 ## Project Structure
 
 ```
-hamplard-backend/
+sorobanlard-backend/
 ├── .env.example
 ├── .gitignore
 ├── nest-cli.json

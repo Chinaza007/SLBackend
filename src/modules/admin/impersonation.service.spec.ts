@@ -7,7 +7,7 @@ import { ForbiddenException, NotFoundException } from '@nestjs/common';
 const mockAdminUser = {
   id: 'admin-1',
   stellarAddress: 'GADMIN123',
-  email: 'admin@hamplard.com',
+  email: 'admin@sorobanlard.com',
   name: 'Admin User',
   role: 'ADMIN',
 };
@@ -15,7 +15,7 @@ const mockAdminUser = {
 const mockTargetUser = {
   id: 'user-1',
   stellarAddress: 'GUSER123',
-  email: 'student@hamplard.com',
+  email: 'student@sorobanlard.com',
   name: 'Student User',
   role: 'STUDENT',
 };

@@ -9,7 +9,7 @@ const ACTIVE_TEMPLATE = {
   name: 'Baking Landscape',
   category: 'Baking',
   branding: {
-    organizationName: 'Hamplard Academy',
+    organizationName: 'SorobanLard Academy',
     primaryColor: '#7C2D12',
     secondaryColor: '#F59E0B',
   },
@@ -59,7 +59,7 @@ describe('CertificatePdfService', () => {
     const template = await pdfService.getActiveTemplate('Baking');
 
     expect(template.id).toBe('tmpl-active');
-    expect(template.branding.organizationName).toBe('Hamplard Academy');
+    expect(template.branding.organizationName).toBe('SorobanLard Academy');
     expect(mockPrisma.certificateTemplate.findFirst).toHaveBeenCalledWith(
       expect.objectContaining({
         where: expect.objectContaining({

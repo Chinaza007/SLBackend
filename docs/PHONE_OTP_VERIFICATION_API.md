@@ -175,7 +175,7 @@ Requires JWT authentication (Bearer token).
 # Africa's Talking credentials
 AFRICASTALKING_USERNAME=sandbox
 AFRICASTALKING_API_KEY=your-api-key
-AFRICASTALKING_SENDER_ID=Hamplard
+AFRICASTALKING_SENDER_ID=SorobanLard
 ```
 
 ### Constants
@@ -202,7 +202,7 @@ AFRICASTALKING_SENDER_ID=Hamplard
    - Sends SMS via Africa's Talking
    
 3. User receives SMS with OTP
-   "Your Hamplard verification code is: 123456. Valid for 10 minutes."
+   "Your SorobanLard verification code is: 123456. Valid for 10 minutes."
    
 4. User submits OTP for verification
    POST /api/v1/otp/verify

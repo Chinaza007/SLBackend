@@ -81,14 +81,14 @@ describe('HttpExceptionFilter', () => {
   it('configures Sentry environment and release from deployment settings', () => {
     process.env.SENTRY_DSN = 'https://public@example.test/1';
     process.env.SENTRY_ENVIRONMENT = 'production';
-    process.env.SENTRY_RELEASE = 'hamplard-backend@abc123';
+    process.env.SENTRY_RELEASE = 'sorobanlard-backend@abc123';
 
     initializeSentry();
 
     expect(Sentry.init).toHaveBeenCalledWith(expect.objectContaining({
       dsn: process.env.SENTRY_DSN,
       environment: 'production',
-      release: 'hamplard-backend@abc123',
+      release: 'sorobanlard-backend@abc123',
       beforeSend: expect.any(Function),
     }));
   });

@@ -30,7 +30,7 @@ export interface CheckpointStatus {
 /**
  * EventsService
  *
- * Polls Stellar RPC every 5 seconds for Hamplard contract events:
+ * Polls Stellar RPC every 5 seconds for SorobanLard contract events:
  *
  *   - course_registered    → log, backend already has the record from POST /courses
  *   - course_approved      → update course status in DB

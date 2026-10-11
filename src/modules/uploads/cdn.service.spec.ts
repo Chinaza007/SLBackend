@@ -11,7 +11,7 @@ describe('CdnService', () => {
   let service: CdnService;
 
   const configMap: Record<string, string | number> = {
-    CDN_BASE_URL: 'https://cdn.hamplard.com',
+    CDN_BASE_URL: 'https://cdn.sorobanlard.com',
     CDN_ORIGIN_BASE_URL: 'http://localhost:3000',
     CDN_SIGNING_SECRET: 'test-secret',
     CDN_SIGNED_URL_TTL_SECONDS: 3600,
@@ -42,7 +42,7 @@ describe('CdnService', () => {
       const result = service.generateCdnUrl('/uploads/videos/lesson.mp4');
 
       expect(result.originUrl).toBe('/uploads/videos/lesson.mp4');
-      expect(result.cdnUrl).toBe('https://cdn.hamplard.com/uploads/videos/lesson.mp4');
+      expect(result.cdnUrl).toBe('https://cdn.sorobanlard.com/uploads/videos/lesson.mp4');
       expect(result.fallbackUrl).toBe('http://localhost:3000/uploads/videos/lesson.mp4');
       expect(result.visibility).toBe('public');
       expect(result.expiresAt).toBeUndefined();
@@ -54,7 +54,7 @@ describe('CdnService', () => {
         expiresInSeconds: 120,
       });
 
-      expect(result.cdnUrl).toContain('https://cdn.hamplard.com/uploads/kyc/doc.pdf?expires=');
+      expect(result.cdnUrl).toContain('https://cdn.sorobanlard.com/uploads/kyc/doc.pdf?expires=');
       expect(result.cdnUrl).toContain('&signature=');
       expect(result.visibility).toBe('private');
       expect(result.expiresAt).toBeDefined();
@@ -79,7 +79,7 @@ describe('CdnService', () => {
       const path = '/uploads/private/old.mp4';
       const signature = (service as any).sign(path, past);
       const url =
-        `https://cdn.hamplard.com${path}?expires=${past}&signature=${signature}`;
+        `https://cdn.sorobanlard.com${path}?expires=${past}&signature=${signature}`;
 
       const validation = service.validateSignedUrl(url);
       expect(validation.valid).toBe(false);
@@ -91,7 +91,7 @@ describe('CdnService', () => {
       const path = '/uploads/private/old.mp4';
       const signature = (service as any).sign(path, past);
       const url =
-        `https://cdn.hamplard.com${path}?expires=${past}&signature=${signature}`;
+        `https://cdn.sorobanlard.com${path}?expires=${past}&signature=${signature}`;
 
       expect(() => service.assertSignedUrlValid(url)).toThrow(UnauthorizedException);
     });
@@ -99,7 +99,7 @@ describe('CdnService', () => {
     it('throws BadRequestException for invalid signatures', () => {
       const future = Math.floor(Date.now() / 1000) + 600;
       const url =
-        `https://cdn.hamplard.com/uploads/x.mp4?expires=${future}&signature=deadbeef`;
+        `https://cdn.sorobanlard.com/uploads/x.mp4?expires=${future}&signature=deadbeef`;
 
       expect(() => service.assertSignedUrlValid(url)).toThrow(BadRequestException);
     });
@@ -122,7 +122,7 @@ describe('CdnService', () => {
     });
 
     it('tracks failed invalidation when purge endpoint errors', async () => {
-      configMap.CDN_PURGE_URL = 'https://cdn.hamplard.com/api/purge';
+      configMap.CDN_PURGE_URL = 'https://cdn.sorobanlard.com/api/purge';
       mockedAxios.post.mockRejectedValueOnce(new Error('purge down'));
 
       // Rebuild service so ConfigService sees purge URL
@@ -156,11 +156,11 @@ describe('CdnService', () => {
       mockedAxios.head.mockResolvedValueOnce({ status: 200 });
 
       const result = await service.resolveWithOriginFallback(
-        'https://cdn.hamplard.com/uploads/v.mp4',
+        'https://cdn.sorobanlard.com/uploads/v.mp4',
       );
 
       expect(result).toEqual({
-        url: 'https://cdn.hamplard.com/uploads/v.mp4',
+        url: 'https://cdn.sorobanlard.com/uploads/v.mp4',
         source: 'cdn',
       });
     });
@@ -169,7 +169,7 @@ describe('CdnService', () => {
       mockedAxios.head.mockRejectedValueOnce(new Error('timeout'));
 
       const result = await service.resolveWithOriginFallback(
-        'https://cdn.hamplard.com/uploads/v.mp4',
+        'https://cdn.sorobanlard.com/uploads/v.mp4',
       );
 
       expect(result).toEqual({

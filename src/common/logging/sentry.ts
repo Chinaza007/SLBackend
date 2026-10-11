@@ -44,7 +44,7 @@ export function initializeSentry(): void {
   Sentry.init({
     dsn,
     environment: process.env.SENTRY_ENVIRONMENT || process.env.NODE_ENV || 'development',
-    release: process.env.SENTRY_RELEASE || `hamplard-backend@${process.env.npm_package_version || '0.1.0'}`,
+    release: process.env.SENTRY_RELEASE || `sorobanlard-backend@${process.env.npm_package_version || '0.1.0'}`,
     beforeSend: (event) => scrubSentryEvent(event),
   });
 }

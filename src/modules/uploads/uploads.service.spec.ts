@@ -44,7 +44,7 @@ describe('UploadsService (CDN integration)', () => {
             get: jest.fn((key: string, defaultValue?: unknown) => {
               const map: Record<string, string | number> = {
                 UPLOAD_DIR: './uploads',
-                CDN_BASE_URL: 'https://cdn.hamplard.com',
+                CDN_BASE_URL: 'https://cdn.sorobanlard.com',
                 CDN_ORIGIN_BASE_URL: 'http://localhost:3000',
                 CDN_SIGNING_SECRET: 'test-secret',
                 CDN_SIGNED_URL_TTL_SECONDS: 3600,
@@ -72,7 +72,7 @@ describe('UploadsService (CDN integration)', () => {
     const result = await service.saveFile(file, 'thumbnails');
 
     expect(result.originUrl).toMatch(/^\/uploads\/thumbnails\//);
-    expect(result.cdnUrl).toMatch(/^https:\/\/cdn\.hamplard\.com\/uploads\/thumbnails\//);
+    expect(result.cdnUrl).toMatch(/^https:\/\/cdn\.sorobanlard\.com\/uploads\/thumbnails\//);
     expect(result.url).toBe(result.cdnUrl);
     expect(result.visibility).toBe('public');
   });

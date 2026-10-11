@@ -28,7 +28,7 @@ describe('DbBackupService', () => {
       BACKUP_S3_PREFIX: '/nightly/',
       BACKUP_RETENTION_DAYS: 7,
       DATABASE_URL:
-        'postgresql://backup-user:secret@database.internal:5433/hamplard?sslmode=require',
+        'postgresql://backup-user:secret@database.internal:5433/sorobanlard?sslmode=require',
     };
     const config = {
       get: jest.fn((key: string, fallback?: unknown) =>
@@ -100,7 +100,7 @@ describe('DbBackupService', () => {
         dumpDurationMs: expect.any(Number),
         durationMs: expect.any(Number),
         sizeBytes: 10,
-        objectKey: expect.stringMatching(/^nightly\/hamplard-.*\.dump$/),
+        objectKey: expect.stringMatching(/^nightly\/sorobanlard-.*\.dump$/),
       }),
     );
     expect(service.getLastRunStatus()).toEqual(result);
@@ -120,7 +120,7 @@ describe('DbBackupService', () => {
         PGPORT: '5433',
         PGUSER: 'backup-user',
         PGPASSWORD: 'secret',
-        PGDATABASE: 'hamplard',
+        PGDATABASE: 'sorobanlard',
         PGSSLMODE: 'require',
       }),
     );

@@ -1,5 +1,5 @@
 // prisma/schema.prisma
-// Hamplard — Database schema
+// SorobanLard — Database schema
 // Run: npx prisma migrate dev --name init
 
 generator client {

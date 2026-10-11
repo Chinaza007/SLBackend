@@ -1,5 +1,5 @@
 // fraud-detection.service.ts
-// Enrollment Fraud Detection Service — Hamplard Backend
+// Enrollment Fraud Detection Service — SorobanLard Backend
 //
 // Responsibilities:
 //  1. Real-time risk scoring on every enrollment attempt.

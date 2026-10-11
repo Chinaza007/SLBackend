@@ -268,7 +268,7 @@ describe('DataExportService', () => {
     });
 
     it('returns the compiled payload with a filename for a valid completed job', async () => {
-      const payload = { format: 'hamplard-gdpr-data-export', data: { profile: { id: userId } } };
+      const payload = { format: 'sorobanlard-gdpr-data-export', data: { profile: { id: userId } } };
       mockPrisma.dataExportJob.findFirst.mockResolvedValue({
         id: 'job-1',
         userId,
@@ -282,7 +282,7 @@ describe('DataExportService', () => {
 
       const result = await service.downloadExport(userId, 'job-1');
 
-      expect(result.filename).toBe('hamplard-data-export-job-1.json');
+      expect(result.filename).toBe('sorobanlard-data-export-job-1.json');
       expect(result.contentType).toBe('application/json');
       expect(result.payload).toEqual(payload);
       expect(result.checksum).toBe('deadbeef');

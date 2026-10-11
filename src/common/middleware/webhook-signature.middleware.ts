@@ -37,7 +37,7 @@ import { SKIP_WEBHOOK_SIGNATURE_KEY } from '../decorators/skip-webhook-signature
 
 /** Header names checked in order of preference. */
 const SIGNATURE_HEADERS = [
-  'x-webhook-signature',     // Hamplard default / generic providers
+  'x-webhook-signature',     // SorobanLard default / generic providers
   'x-hub-signature-256',     // GitHub / Meta
   'stripe-signature',        // Stripe (prefix format differs — handled below)
 ] as const;

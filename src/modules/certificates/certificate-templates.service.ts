@@ -286,7 +286,7 @@ export class CertificateTemplatesService {
     const secondary = branding.secondaryColor && HEX_COLOR_PATTERN.test(branding.secondaryColor)
       ? branding.secondaryColor
       : '#C9A227';
-    const organization = branding.organizationName || 'Hamplard';
+    const organization = branding.organizationName || 'SorobanLard';
     const title = layout.titleText || 'Certificate of Completion';
     const subtitle = layout.subtitleText || template.category;
     const body = this.interpolate(layout.bodyText || 'This certifies that {{studentName}} has successfully completed {{courseTitle}}.', {

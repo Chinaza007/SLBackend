@@ -47,9 +47,9 @@ async function bootstrap() {
   app.useGlobalInterceptors(new TransformInterceptor());
 
   const swaggerConfig = new DocumentBuilder()
-    .setTitle('Hamplard API')
+    .setTitle('SorobanLard API')
     .setDescription(
-      'Backend API for Hamplard — Africa\'s practical skills online learning platform',
+      'Backend API for SorobanLard — Africa\'s practical skills online learning platform',
     )
     .setVersion('1.0')
     .addBearerAuth()
@@ -81,7 +81,7 @@ async function bootstrap() {
   });
 
   await app.listen(port);
-  logger.log(`Hamplard API running on http://localhost:${port}/${apiPrefix}`);
+  logger.log(`SorobanLard API running on http://localhost:${port}/${apiPrefix}`);
   logger.log(`Swagger docs at http://localhost:${port}/docs`);
 }
 

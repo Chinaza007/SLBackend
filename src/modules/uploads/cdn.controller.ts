@@ -26,13 +26,13 @@ export class InvalidateCacheDto {
 }
 
 export class ValidateSignedUrlDto {
-  @ApiProperty({ example: 'https://cdn.hamplard.com/uploads/private/x.mp4?expires=...&signature=...' })
+  @ApiProperty({ example: 'https://cdn.sorobanlard.com/uploads/private/x.mp4?expires=...&signature=...' })
   @IsString()
   url: string;
 }
 
 export class ResolveMediaDto {
-  @ApiProperty({ example: 'https://cdn.hamplard.com/uploads/videos/x.mp4' })
+  @ApiProperty({ example: 'https://cdn.sorobanlard.com/uploads/videos/x.mp4' })
   @IsString()
   cdnUrl: string;
 

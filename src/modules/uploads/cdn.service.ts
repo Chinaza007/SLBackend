@@ -56,7 +56,7 @@ export class CdnService {
 
   constructor(private readonly config: ConfigService) {
     this.cdnBaseUrl = this.stripTrailingSlash(
-      this.config.get<string>('CDN_BASE_URL', 'https://cdn.hamplard.com'),
+      this.config.get<string>('CDN_BASE_URL', 'https://cdn.sorobanlard.com'),
     );
     this.originBaseUrl = this.stripTrailingSlash(
       this.config.get<string>(
@@ -66,7 +66,7 @@ export class CdnService {
     );
     this.signingSecret = this.config.get<string>(
       'CDN_SIGNING_SECRET',
-      'hamplard-cdn-dev-secret',
+      'sorobanlard-cdn-dev-secret',
     );
     this.defaultSignedTtl = this.config.get<number>(
       'CDN_SIGNED_URL_TTL_SECONDS',

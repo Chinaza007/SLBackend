@@ -23,11 +23,11 @@ const COUNTRY_DIAL_CODES: Record<string, string> = {
 
 const SMS_TEMPLATES: Record<SmsTemplateKey, string> = {
   ACCOUNT_VERIFICATION:
-    'Hi {{name}}, your Hamplard verification code is {{code}}. It expires in {{minutes}} minutes.',
+    'Hi {{name}}, your SorobanLard verification code is {{code}}. It expires in {{minutes}} minutes.',
   ENROLLMENT_CONFIRMED: 'Hi {{name}}, you are now enrolled in "{{courseTitle}}". Happy learning!',
   PAYMENT_RECEIVED: 'Hi {{name}}, we received your payment of {{amount}} for "{{courseTitle}}".',
   PASSWORD_RESET:
-    'Hi {{name}}, your Hamplard password reset code is {{code}}. It expires in {{minutes}} minutes.',
+    'Hi {{name}}, your SorobanLard password reset code is {{code}}. It expires in {{minutes}} minutes.',
   GENERIC_ALERT: '{{message}}',
 };
 

@@ -56,7 +56,7 @@ export class AuthService {
    */
   generateNonce(stellarAddress: string): string {
     const now = Date.now();
-    const nonce = `hamplard:${stellarAddress}:${now}:${Math.random().toString(36).slice(2)}`;
+    const nonce = `sorobanlard:${stellarAddress}:${now}:${Math.random().toString(36).slice(2)}`;
 
     this.nonces.set(stellarAddress, {
       nonce,

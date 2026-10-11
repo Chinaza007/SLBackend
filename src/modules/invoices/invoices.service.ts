@@ -101,7 +101,7 @@ export class InvoicesService {
       doc.on('end', () => resolve(Buffer.concat(chunks)));
       doc.on('error', reject);
 
-      doc.fontSize(20).text('Hamplard', { continued: false });
+      doc.fontSize(20).text('SorobanLard', { continued: false });
       doc.fontSize(10).fillColor('#666').text('Africa\'s practical skills learning platform');
       doc.moveDown(2);
 
@@ -117,7 +117,7 @@ export class InvoicesService {
       if (data.txHash) doc.text(`Transaction hash: ${data.txHash}`);
       doc.moveDown(2);
 
-      doc.fontSize(9).fillColor('#999').text('Thank you for learning with Hamplard.');
+      doc.fontSize(9).fillColor('#999').text('Thank you for learning with SorobanLard.');
       doc.end();
     });
   }
