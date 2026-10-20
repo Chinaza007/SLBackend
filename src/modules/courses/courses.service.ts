@@ -29,6 +29,7 @@ export class CoursesService {
     await Promise.all([
       this.cache.invalidateNamespace('courses:list'),
       this.cache.invalidateNamespace('courses:categories'),
+      this.cache.invalidateNamespace('courses:detail'),
     ]);
   }
 
