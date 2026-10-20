@@ -20,3 +20,16 @@ and CSV exports at 50,000 rows. Prisma already declares the
 leaderboard uses 60 seconds. Mutations invalidate the course list/categories/detail
 namespaces and leaderboard recalculations invalidate leaderboard entries.
 Cache keys incorporate query arguments and route parameters.
+
+## Certificate PDF generation (#180)
+Certificate issuance now enqueues a BullMQ `certificate-pdf` job. A worker renders the
+PDF and atomically saves the file under `CERTIFICATE_PDF_DIR` (default
+`./uploads/certificates`), then updates the certificate's `pdfUrl` only after the
+file has been persisted. Authenticated callers can poll `GET /certificates/:id/status`.
+This change depends on Redis and the certificate worker being available. For multiple
+replicas, mount a shared persistent volume or replace local storage with object storage.
+An issued certificate may exist before its PDF is ready; consumers should poll status.
+The existing download endpoint returns a PDF reference and does not itself stream the file.
+
+Run `npm test -- --runInBand` and `npm run build` from the repository root before merge;
+these checks were not executed by the GitHub connector.
