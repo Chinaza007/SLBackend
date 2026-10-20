@@ -7,7 +7,6 @@ import { StellarService } from '../../common/stellar/stellar.service';
 import { NotificationsService } from '../notifications/notifications.service';
 import { ExamsService } from '../exams/exams.service';
 import { NotificationType } from '@prisma/client';
-import { CertificateRenderData } from './certificate-template.types';
 import { v4 as uuidv4 } from 'uuid';
 import { Queue } from 'bullmq';
 import { InjectQueue } from '@nestjs/bullmq';
