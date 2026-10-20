@@ -3,6 +3,9 @@ import {
   Res,
   NotFoundException,
 } from '@nestjs/common';
+import { InjectQueue } from '@nestjs/bullmq';
+import { Queue } from 'bullmq';
+import { CERTIFICATE_PDF_QUEUE } from '../../common/queue/queue.constants';
 import { ApiTags, ApiOperation, ApiBearerAuth } from '@nestjs/swagger';
 import { CertificatesService } from './certificates.service';
 import { JwtAuthGuard } from '../../common/guards/jwt-auth.guard';
@@ -19,7 +22,8 @@ import {
 @ApiTags('certificates')
 @Controller('certificates')
 export class CertificatesController {
-  constructor(private readonly certificatesService: CertificatesService) {}
+  constructor(private readonly certificatesService: CertificatesService,
+    @InjectQueue(CERTIFICATE_PDF_QUEUE) private readonly pdfQueue: Queue) {}
 
   /** Public — no auth needed. Anyone can verify a certificate by ID. */
   @Get('verify/:id')
@@ -78,6 +82,18 @@ export class CertificatesController {
     @Body() dto?: RevokeCertificateDto,
   ) {
     return this.certificatesService.revoke(id, adminId, dto?.reason);
+  }
+
+  @Get(':id/status')
+  @UseGuards(JwtAuthGuard)
+  @ApiBearerAuth()
+  @ApiOperation({ summary: 'Poll certificate PDF rendering job status' })
+  async getPdfStatus(@Param('id') id: string) {
+    await this.certificatesService.findById(id);
+    const job = await this.pdfQueue.getJob(id);
+    if (!job) return { certificateId: id, status: 'not_queued' };
+    const status = await job.getState();
+    return { certificateId: id, status, pdfUrl: status === 'completed' ? job.returnvalue?.pdfUrl : null };
   }
 
   @Get(':id/download')
