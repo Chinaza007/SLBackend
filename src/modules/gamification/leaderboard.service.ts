@@ -1,5 +1,6 @@
 import { Injectable, BadRequestException, Logger } from '@nestjs/common';
 import { Cron, CronExpression } from '@nestjs/schedule';
+import { CacheService } from '../../common/cache/cache.service';
 import { PrismaService } from '../../common/prisma/prisma.service';
 import { LeaderboardQueryDto, LeaderboardScope } from './dto/leaderboard-query.dto';
 
@@ -17,7 +18,7 @@ export interface LeaderboardEntry {
 export class LeaderboardService {
   private readonly logger = new Logger(LeaderboardService.name);
 
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(private readonly prisma: PrismaService, private readonly cache: CacheService) {}
 
   async getLeaderboard(query: LeaderboardQueryDto) {
     if (query.scope === LeaderboardScope.COURSE && !query.courseId) {
@@ -123,6 +124,7 @@ export class LeaderboardService {
       });
     }
 
+    await this.cache.invalidateNamespace('leaderboard');
     return { status: 'recalculated', coursesCount: activeCourses.length };
   }
 
