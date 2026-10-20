@@ -52,6 +52,8 @@ export class CoursesController {
   getCategories() { return this.coursesService.getCategories(); }
 
   @Get(':id')
+  @UseInterceptors(HttpCacheInterceptor)
+  @Cacheable('courses:detail', 120)
   @ApiOperation({ summary: 'Get full course detail including modules and lessons' })
   findOne(@Param('id') id: string) { return this.coursesService.findOne(id); }
 
